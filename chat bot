@@ -1,0 +1,74 @@
+#include<iostream>
+#include<cstdlib>  // for general purpose use (to generate random number)
+#include<ctime>
+using namespace std;
+
+void user()
+{
+	srand(time(0));
+	int bot_choice=rand() % 3 + 1;  // choose a random move for the chatbot
+	int user_choice;
+	string ans;
+
+	cout<<endl<<"Enter: 1 for Stone \n 	: 2 for paper\n 	: 3 for Scissors"<<endl;
+	cin>>user_choice;
+
+	//for the winner
+
+	if(user_choice==bot_choice){
+   	 cout<<endl<<"My Choice was : "<<bot_choice<<endl<<endl;
+    	cout<<"yehhhh !!! It's a tie!"<<endl;
+	}
+	else if(user_choice==1 && bot_choice==3 ||
+        	user_choice==2 && bot_choice==1 ||
+        	user_choice==3 && bot_choice==2 )
+        	{
+   	     	cout<<endl<<"My Choice was : "<<bot_choice<<endl<<endl;
+            	cout<<endl<<"Hey dear !! Congratulations, You win the game ....."<<endl;
+        	}
+	else
+	{   cout<<endl<<"My Choice was : "<<bot_choice<<endl;
+    	cout<<"Oops !! You Lose..."<<endl;
+    	cout<<"don't be sad .. try one more time "<<endl;
+	}
+	cout<<endl<<"-----------------------------------------------------------"<<endl;
+
+}
+int main()
+{
+	cout<<"-----------------------------------------------------------"<<endl<<endl;
+	cout<<"Enter your name : ";
+	string name;
+	getline (cin, name);
+	cout<<endl<<"Welcome "<<name<<endl;
+	cout<<"I am Rocking Bot !!! Very excited to play with You ...";
+	cout<<endl<<"\nAre you excited to play the game with me \n'if yes write yes', 'else write no'..";
+	string ans;
+	cin>>ans;
+	if(ans=="yes" || ans=="YES" || ans=="Yes"  || ans=="s" || ans=="S")
+	{
+    	cout<<"\nLet's play Stone,Paper,Scissors !!!"<<endl;
+    	user();
+    	int sol;
+    	do{
+    	cout<<endl<<"are you excited to play one more time press '1' else press '0' : ";
+    	cin>>sol;
+
+    	if(sol==1)
+       	{
+        	user();
+       	}
+    	else
+      	{
+        	cout<<endl<<"Nice to meet you !!! \nThank You ";
+        	break;
+      	}
+    	}while(true);
+	}
+
+	else
+	{
+   	cout<<endl<<"Nice to meet you !!! \nThank You";
+	}
+
+}
