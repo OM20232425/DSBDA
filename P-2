@@ -1,0 +1,31 @@
+*2*
+Consider the given dataset StudentsPerformanceTest1
+1. Check that is there any missing values in dataframe as a whole
+2. is there any missing values across each column
+3. count of missing values across each column
+4. count row wise missing value
+5. count of missing values of a gender column.
+6. groupby count of missing values of a column , consider column gender and score
+7. replace the missing value of score column with average value of the column
+
+****************************************************************************
+import pandas as pd
+
+na = ["na", "Na"]
+df = pd.read_csv("StudentsPerformanceTest1.csv", na_values=na)
+df.head(5)
+
+df.isna()
+
+df.isna().sum()
+
+df.isna().sum(axis=1)
+
+df['gender'].isna().sum()
+
+df.isnull().groupby(['gender', 'math score']).sum()
+
+avg = df['math score'].mean()
+df['math score'].fillna(avg)
+
+
