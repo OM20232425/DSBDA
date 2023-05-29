@@ -1,0 +1,20 @@
+import pandas as pd
+# Assuming you have the demo dataset file named 'demo_dataset.csv'
+df = pd.read_csv('/home/sainath/Downloads/demo1.csv')
+print(df)
+import matplotlib.pyplot as plt
+# Scatter plot to visualize the data
+plt.scatter(df.index, df['placement score']) # Replace 'column_name' with the actual
+column containing the data you want to detect outliers for
+plt.xlabel('Index')
+plt.ylabel('Value')
+plt.title('Scatter Plot')
+plt.show()
+# Calculate the 10th and 90th percentiles
+lower_quantile = df['placement score'].quantile(0.10)
+upper_quantile = df['placement score'].quantile(0.90)
+# Floor outliers below the 10th percentile value
+df.loc[df['placement score'] < lower_quantile, 'placement score'] = lower_quantile
+# Cap outliers above the 90th percentile value
+df.loc[df['placement score'] > upper_quantile, 'placement score'] = upper_quantile
+print(df)
