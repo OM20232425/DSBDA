@@ -1,0 +1,48 @@
+*15*
+1. Implement logistic regression using Python to perform classification on Social_Network_Ads.csv dataset.
+2. Compute Confusion matrix to find TP, FP, TN, FN, Accuracy, Error rate, Precision, Recall on the given dataset..
+
+***********************************************************************************************************
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
+
+df = pd.read_csv("Social_Network_Ads.csv")
+df
+
+le = LabelEncoder()
+df["Gender"] = le.fit_transform(df["Gender"])
+print(df)
+
+
+x = df.iloc[:,1:4]
+y = df['Purchased']
+
+x_train , x_test , y_train , y_test = train_test_split( x , y , test_size = 0.2)
+
+logReg = LogisticRegression()
+logReg.fit(x_train,y_train)
+y_pred=logReg.predict(x_test)
+
+accuracy = accuracy_score(y_test,y_pred)
+precision =precision_score(y_test, y_pred,average='micro')
+recall = recall_score(y_test, y_pred,average='micro')
+
+
+print("Accuracy:- ",accuracy)
+print("Precision:- ",precision)
+print("Recall:- ",recall)
+print(" ")
+
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+print(" ")
+
+cmD = ConfusionMatrixDisplay(confusion_matrix = cm,display_labels =y.unique())
+print(cmD.plot())
+
