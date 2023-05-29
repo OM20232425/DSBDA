@@ -1,0 +1,27 @@
+import pandas as pd
+import numpy as np
+import random
+# Set the random seed for reproducibility
+random.seed(42)
+# Define the number of rows for the dataset
+num_rows = 1000
+# Create an empty DataFrame
+df = pd.DataFrame()
+# Generate random values for each feature within the specified ranges
+df['Math_Score'] = np.random.randint(60, 81, num_rows)
+df['Reading_Score'] = np.random.randint(75, 96, num_rows)
+df['Writing_Score'] = np.random.randint(60, 81, num_rows)
+df['Placement_Score'] = np.random.randint(75, 101, num_rows)
+df['Club_Join_Date'] = np.random.choice(pd.date_range('2018-01-01',
+'2021-12-31'), num_rows)
+# Create impurities in 20% of the data by introducing missing values in
+the 'Placement_Score' column
+num_impurities = int(num_rows * 0.2)
+indices = random.sample(range(num_rows), num_impurities)
+df.loc[indices, 'Placement_Score'] = np.nan
+# Save the DataFrame to an Excel file
+excel_file = 'StudentsPerformance.xlsx'
+df.to_excel(excel_file, index=False)
+print("Dataset 'StudentsPerformance' created and saved as
+'StudentsPerformance.xlsx'.")
+print(df)
