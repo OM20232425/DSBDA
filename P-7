@@ -1,0 +1,28 @@
+*7*
+1. Load the Academic Performance dataset in data frame object.
+2. Check null values in the dataset. 
+3. Check missing values in dataset and replace the null values with standard null value NaN
+4. Replace the missing value of Math Score with Mean Value
+5. Replace the missing value of Reading Score with standard deviation
+6. Replace the missing value of place with common value "Nashik"
+***********************************************************************************************************
+import pandas as pd
+mis_val = ["na", "NaN", "Na"]
+
+df = pd.read_csv("C:\\Users\\Admin\\Downloads\\StudentsPerformance.csv")
+
+df
+
+df.isnull()
+
+
+df.fillna('NaN')
+
+avg = df['math score'].mean()
+df['math score'].fillna(avg)
+
+
+std = df['reading score'].std()
+df['reading score'].fillna(std)
+
+df['Region'].fillna("Nashik")
