@@ -1,0 +1,22 @@
+*12*
+1. Load the demo dataset in dataframe object df
+2. Detect the outlier using Inter Quantile Range(IQR)
+3. remove the outliers from the dataset
+***********************************************************************************************************
+
+
+import pandas as pd
+
+df = pd.read_csv("demo1.csv")
+
+Q1 = df.quantile(0.25)
+Q3 = df.quantile(0.75)
+IQR = Q3 - Q1
+
+threshold = 1.5
+
+outliers = (df < (Q1 - threshold * IQR)) | (df > (Q3 + threshold * IQR))
+
+df_no_outliers = df[~outliers.any(axis=1)]
+
+print(df)
