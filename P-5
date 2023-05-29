@@ -1,0 +1,18 @@
+*5*
+1. Locate open Iris dataset from the URL csv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data' 
+2. Perform the Dummy Variable Encoding , by considering Species as target variable
+**********************************************************************************************************
+import pandas as pd
+from sklearn.datasets import load_iris
+
+import pandas as pd
+from sklearn.datasets import load_iris
+
+data = load_iris()
+df = pd.DataFrame(data =data.data, columns=data.feature_names)
+df['species'] = data.target
+print(df)
+
+encoded = pd.get_dummies(df, columns=['species'], prefix=['Species'], drop_first = True)
+print(encoded)
+
