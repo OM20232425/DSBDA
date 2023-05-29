@@ -1,0 +1,33 @@
+*1* 
+Locate open Iris dataset from the URL csv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data' 
+2. Perform the following operation on dataset
+a) Display total no of rows and column
+b) Display type of each column
+c) Sort the data in descending order , by considering column sepal.length
+d) Slice the data: 11 to 20 rows, and only two columns, sepal.length and Species
+e) rename the column Species to Type
+******************************************************************************************************
+import pandas as pd
+from sklearn.datasets import load_iris
+
+data = load_iris()
+df = pd.DataFrame(data=data.data, columns=data.feature_names)
+df['species'] = data.target
+df['species'] = df['species'].replace(to_replace = [0,1,2], value = ['setosa', 'vericolor', 'virginica'])
+
+df.head(5)
+
+print(len(df.columns))
+
+print(len(df.index))
+
+for col in df.columns:
+    print(col, type(col))
+
+df['sepal length (cm)'].sort_values(ascending = False)
+
+df.loc[11:20, ['sepal length (cm)', 'species']]
+
+df = df.rename(columns = {'species':'Type'} )
+df.head(5)
+
