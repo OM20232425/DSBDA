@@ -1,0 +1,20 @@
+*3*
+1. Locate open Iris dataset from the URL csv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data' 
+2. Perform the label encoding , by considering Species as target variable.
+
+***************************************************
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.preprocessing import LabelEncoder
+
+data = load_iris()
+df = pd.DataFrame(data = data.data, columns = data.feature_names)
+df['sepecies'] = data.target
+df['sepecies'] = df['sepecies'].replace(to_replace=[0,1,2], value=['setosa', 'virgicolor', 'virginica'])
+
+print(df)
+
+encoder = LabelEncoder()
+encoded = df.copy()
+encoded.iloc[:, -1] = encoder.fit_transform(encoded.iloc[:, -1])
+print(encoded)
