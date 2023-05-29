@@ -1,0 +1,19 @@
+*4*
+1. Locate open Iris dataset from the URL csv_url = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data' 
+2. Perform the One Hot encoding , by considering Species as target variable.
+************************************************************************************************************
+import pandas as pd
+from sklearn.datasets import load_iris
+
+data = load_iris()
+df = pd.DataFrame(data = data.data, columns = data.feature_names)
+df['species'] = data.target
+df['species'] = df['species'].replace(to_replace=[0,1,2], value=['setosa', 'virgicolor', 'virginica'])
+print(df)
+
+
+encoded = pd.get_dummies(data=df, columns=['species'], prefix=['species'], drop_first = False )
+
+print(encoded)
+
+
