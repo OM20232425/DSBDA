@@ -1,0 +1,32 @@
+*13*
+1. Load the MallCustomer dataset in dataframe object df
+2. Display summary statistics (mean, median, minimum, maximum, standard deviation) for a dataset for each column
+3. Display Measures of Dispersion ( Mean Absolute Deviation, Variance, Standard Deviation, Range, Quartiles, Skewness)
+4. if your categorical variable is age groupsa nd quantitative variable is income, then provide summary statistics (minimum and maximum) of income 
+grouped by the age groups.
+***********************************************************************************************************
+
+import pandas as pd
+
+df = pd.read_csv("Mall_Customers.csv")
+print(df)
+
+
+print(df.mean())
+print(df.median())
+print(df.max())
+print(df.min())
+print(df.std())
+
+
+print(df.mad())
+
+print(df.var())
+
+print(df.std())
+
+print(df.describe().loc[['25%', '50%', '75%']])
+
+print(df.skew())
+
+print(df.groupby('Age')['Annual Income (k$)'].agg(['min', 'max']))
