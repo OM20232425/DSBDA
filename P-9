@@ -1,0 +1,25 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+# Step 1: Load the demo dataset into a DataFrame
+df = pd.read_csv('demo.csv')
+# Step 2: Print the columns in the dataset
+print("Columns in the dataset:")
+print(df.columns)
+# Step 3: Detect outliers using BoxPlot
+if 'Value' in df.columns:
+plt.boxplot(df['Value'])
+plt.title('BoxPlot of Value')
+plt.show()
+else:
+print("Column 'Value' not found in the dataset.")
+# Step 4: Handle outliers using Quantile-based flooring and capping
+if 'Value' in df.columns:
+q10 = df['Value'].quantile(0.10)
+q90 = df['Value'].quantile(0.90)
+df['Value'] = df['Value'].clip(lower=q10, upper=q90)
+print("Outliers handled successfully.")
+else:
+print("Column 'Value' not found in the dataset.")
+# Print the updated dataset
+print("Updated dataset after handling outliers:")
+print(df)
