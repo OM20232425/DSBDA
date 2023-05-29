@@ -1,0 +1,28 @@
+*8*
+1. Load the Academic Performance dataset in data frame object. 
+2. Check null values in the dataset.
+3. Count the number of null values in complete data set (Hint: eplace the null values with standard null value NaN)
+4. Dropping rows with at least 1 null value
+5. Dropping rows if all values in that row are missing
+6. Dropping columns with at least 1 null value.
+7. Dropping Rows with at least 1 null value in CSV file
+************************************************************************************************************
+
+import pandas as pd
+
+null_val = ["na", "Na"]
+df = pd.read_csv("StudentsPerformanceTest1.csv", na_values = null_val)
+print(df)
+
+df.isnull()
+
+df.isnull().sum().sum()
+
+rows = df.dropna()
+print(rows)
+
+rowsall = df.dropna(how='all')
+print(rowsall)
+
+cols = df.dropna(axis=1)
+print(cols)
