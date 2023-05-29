@@ -1,0 +1,53 @@
+*20*
+
+Download the Iris flower dataset or any other dataset into a DataFrame. (e.g.,
+https://archive.ics.uci.edu/ml/datasets/Iris ). Scan the dataset and give the inference as:
+1. List down the features and their types (e.g., numeric, nominal) available in the dataset.
+2. Create a histogram for each feature in the dataset to illustrate the feature distributions.
+3. Create a box plot for each feature in the dataset.
+4. Compare distributions and identify outliers.
+***********************************************************************************************************************
+
+import pandas as pd
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+
+data = load_iris()
+df = pd.DataFrame(data=data.data, columns=data.feature_names)
+df['species'] = data.target
+print(df)
+
+print(df.columns)
+print(df.dtypes)
+
+plt.hist(df['sepal length (cm)'])
+plt.show()
+
+plt.hist(df['sepal width (cm)'])
+plt.show()
+
+plt.hist(df['petal length (cm)'])
+plt.show()
+
+plt.hist(df['petal width (cm)'])
+plt.show()
+
+plt.hist(df['species'])
+plt.show()
+
+plt.boxplot(df['sepal length (cm)'])
+plt.show()
+
+plt.boxplot(df['sepal width (cm)'])
+plt.show()
+
+plt.boxplot(df['petal length (cm)'])
+plt.show()
+
+plt.boxplot(df['petal width (cm)'])
+plt.show()
+
+plt.boxplot(df['species'])
+plt.show()
+
+
